@@ -1,8 +1,8 @@
 [package]
-name = "rhythm-pattern-writer"
+name = "Patternmania"
 version = "0.2.0"
 description = "Simple five-lane pattern editor with Discord export"
-authors = ["Dev Dam"]
+authors = ["xdam99"]
 edition = "2021"
 
 [lib]

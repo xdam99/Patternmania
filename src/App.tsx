@@ -8,7 +8,7 @@ import {
   type PatternRow,
 } from "./types";
 
-const STORAGE_KEY = "pattern-writer.simple.v1";
+const STORAGE_KEY = "PATTERNMANIA";
 const INITIAL_ROWS = 12;
 const MAX_ROWS = 200;
 const MAX_HISTORY = 100;
@@ -488,8 +488,8 @@ function App() {
             ))}
           </div>
           <div>
-            <p className="eyebrow">PATTERN WRITER</p>
-            <h1>Crée ton pattern, simplement.</h1>
+            <p className="eyebrow">PATTERNMANIA</p>
+            <h1>Explique ton pattern, simplement.</h1>
           </div>
         </div>
       </header>
