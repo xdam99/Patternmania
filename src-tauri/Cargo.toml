@@ -1,0 +1,17 @@
+[package]
+name = "rhythm-pattern-writer"
+version = "0.2.0"
+description = "Simple five-lane pattern editor with Discord export"
+authors = ["Dev Dam"]
+edition = "2021"
+
+[lib]
+name = "rhythm_pattern_writer_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-clipboard-manager = "2"
