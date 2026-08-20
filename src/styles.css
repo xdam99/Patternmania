@@ -229,6 +229,56 @@ textarea:focus {
   flex-wrap: wrap;
 }
 
+.update-screen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+  padding: 20px;
+}
+
+.update-screen h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.update-screen p {
+  margin: 0;
+  color: var(--muted-light);
+  max-width: 420px;
+}
+
+.update-screen__progress {
+  position: relative;
+  width: 260px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--panel-deep);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.update-screen__bar {
+  height: 100%;
+  background: var(--accent);
+  transition: width 150ms ease;
+}
+
+.update-screen__progress span {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
 button.secondary,
 button.danger,
 button.primary,

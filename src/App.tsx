@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { copyText } from "./services/clipboard";
+import { check as checkForUpdate, type Update } from "@tauri-apps/plugin-updater";
+import { relaunch } from "@tauri-apps/plugin-process";
 import {
   LANES,
   type ExportFormat,
@@ -233,6 +235,30 @@ function App() {
   const [showEmptyDots, setShowEmptyDots] = useState(true);
   const [wrapCodeBlock, setWrapCodeBlock] = useState(true);
   const [status, setStatus] = useState("Prêt à créer ton pattern.");
+  const [availableUpdate, setAvailableUpdate] = useState<Update | null>(null);
+  const [updateProgress, setUpdateProgress] = useState<{ downloaded: number; total: number } | null>(null);
+
+  useEffect(() => {
+    checkForUpdate()
+      .then((update) => {
+        if (update?.available) setAvailableUpdate(update);
+      })
+      .catch(() => {
+        // Pas de mise à jour à proposer si la vérification échoue (hors ligne, etc.)
+      });
+  }, []);
+
+  async function installUpdate() {
+    if (!availableUpdate) return;
+    let downloaded = 0;
+    let total = 0;
+    await availableUpdate.downloadAndInstall((event) => {
+      if (event.event === "Started") total = event.data.contentLength ?? 0;
+      if (event.event === "Progress") downloaded += event.data.chunkLength;
+      setUpdateProgress({ downloaded, total });
+    });
+    await relaunch();
+  }
 
   const document = history.current;
 
@@ -477,6 +503,33 @@ function App() {
   });
 
   const usedRows = document.rows.filter(rowHasNotes).length;
+
+  if (availableUpdate) {
+    const percent =
+      updateProgress && updateProgress.total > 0
+        ? Math.round((updateProgress.downloaded / updateProgress.total) * 100)
+        : null;
+
+    return (
+      <div className="update-screen">
+        <h1>Mise à jour disponible</h1>
+        <p>
+          Une nouvelle version de Patternmania est disponible :{" "}
+          <strong>{availableUpdate.version}</strong>.
+        </p>
+        {percent !== null ? (
+          <div className="update-screen__progress">
+            <div className="update-screen__bar" style={{ width: `${percent}%` }} />
+            <span>{percent}%</span>
+          </div>
+        ) : (
+          <button onClick={installUpdate} className="primary">
+            Mettre à jour maintenant
+          </button>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className="app-shell">
