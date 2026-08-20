@@ -1,6 +1,6 @@
 [package]
 name = "Patternmania"
-version = "0.2.0"
+version = "0.3.0"
 description = "Simple five-lane pattern editor with Discord export"
 authors = ["xdam99"]
 edition = "2021"
