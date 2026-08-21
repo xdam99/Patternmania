@@ -243,9 +243,7 @@ function App() {
       .then((update) => {
         if (update?.available) setAvailableUpdate(update);
       })
-      .catch(() => {
-        // Pas de mise à jour à proposer si la vérification échoue (hors ligne, etc.)
-      });
+      .catch(() => {});
   }, []);
 
   async function installUpdate() {

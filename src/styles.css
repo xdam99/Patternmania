@@ -5,7 +5,6 @@
   font-synthesis: none;
   text-rendering: optimizeLegibility;
 
-  /* Palette reprise du projet de référence */
   --page: #111214;
   --panel: #2b2d31;
   --panel-soft: #313338;
@@ -21,7 +20,6 @@
   --danger: #f23f43;
   --danger-hover: #da373c;
 
-  /* Couleurs des notes conservées */
   --green: #36d266;
   --red: #ef4e5d;
   --yellow: #f2cf42;
@@ -774,7 +772,6 @@ button.primary:hover {
   }
 }
 
-/* Aperçu du rendu Discord ANSI */
 .discord-preview {
   overflow: auto;
   white-space: pre;
